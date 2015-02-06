@@ -20,7 +20,7 @@ public class LZ4DecompressorImpl implements LZ4Decompressor {
         int copyPos = 0;
         
         while (srcPos < srcSize) {
-            // TODO int �ϊ�
+            // TODO int •ÏŠ·
             
             // get runlength
             runCode = src[srcPos++];
@@ -37,6 +37,7 @@ public class LZ4DecompressorImpl implements LZ4Decompressor {
             }
 
             System.arraycopy(src, srcPos, dest, destPos, literalLength);
+            srcPos += literalLength;
             destPos += literalLength;
             
             // check EOF
@@ -45,7 +46,7 @@ public class LZ4DecompressorImpl implements LZ4Decompressor {
             }
             
             // get distance
-            distance = (src[srcPos] << 8) | src[srcPos + 1]; // TODO int �ϊ�
+            distance = (src[srcPos] << 8) | src[srcPos + 1]; // TODO int •ÏŠ·
             srcPos += 2;
             
             copyPos = destPos - distance;
